@@ -5,7 +5,7 @@
 
     <v-app-bar app color="red" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Subs Cleaner</v-toolbar-title>
+      <v-toolbar-title>Youtube Subs Cleaner</v-toolbar-title>
     </v-app-bar>
 
     <v-main>
@@ -24,7 +24,18 @@
           </v-col>
         </v-row>
       </v-container> -->
-      <v-container>
+      <div class="tw-h-56 tw-flex tw-container tw-justify-center tw-items-center tw-flex-col tw-mx-auto">
+        <div>
+            <p class="tw-text-1xl tw-text-center tw-text-gray-700">To start cleaning your Youtube subscription list, please login using this button below</p>
+        </div>
+        <div>
+          <v-btn width="185" height="40" @click="signIn">
+            <v-img
+            src="./assets/btn_google_signin_light_normal_web.png"></v-img>
+          </v-btn>
+        </div>
+      </div>
+      <!-- <v-container>
         <v-layout row>
           <v-flex xs12 col>
             <p class="text-center">Start cleaning your Youtube subscription list now.</p>
@@ -36,11 +47,11 @@
             </v-btn>
           </v-flex>
         </v-layout>
-      </v-container>
+      </v-container> -->
     </v-main>
-    <v-footer color="red" app>
+    <!-- <v-footer color="red" app>
       <span class="white--text">Yanis Bouchenna &copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 

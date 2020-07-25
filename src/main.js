@@ -6,6 +6,8 @@ import vuetify from './plugins/vuetify';
 
 import VueMobileDetection from 'vue-mobile-detection';
 
+import './assets/css/tailwind.css';
+
 
 Vue.config.productionTip = false
 
