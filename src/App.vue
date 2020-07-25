@@ -9,7 +9,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container class="fill-height" fluid>
+      <!-- <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
           <span class="display-1">
             Start cleaning your Youtube subscriptions now
@@ -23,6 +23,19 @@
             </v-btn>
           </v-col>
         </v-row>
+      </v-container> -->
+      <v-container>
+        <v-layout row>
+          <v-flex xs12 col>
+            <p class="text-center">Start cleaning your Youtube subscription list now.</p>
+          </v-flex>
+          <v-flex col align="center" class="text-center" justify="center">
+            <v-btn width="185" height="40" @click="signIn">
+              <v-img
+              src="./assets/btn_google_signin_light_normal_web.png"></v-img>
+            </v-btn>
+          </v-flex>
+        </v-layout>
       </v-container>
     </v-main>
     <v-footer color="red" app>
