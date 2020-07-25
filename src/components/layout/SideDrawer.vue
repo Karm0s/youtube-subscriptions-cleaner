@@ -4,7 +4,7 @@
   <About v-bind:dialog="aboutDialog" @update-dialog="updateAboutDialog"/>
 
   <v-list dense>
-    <v-list-item link>
+    <v-list-item link @click="emitLoginEvent">
       <v-list-item-action>
       <v-icon>mdi-login</v-icon>
       </v-list-item-action>
@@ -67,7 +67,10 @@ export default {
   }),
   methods: {
     updateAboutDialog: function (newValue) {
-        this.aboutDialog = newValue;
+      this.aboutDialog = newValue;
+    },
+    emitLoginEvent: function () {
+      this.$emit('drawer-signin-link-clicked');
     }
   },
   computed: {
