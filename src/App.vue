@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     
-    <SideDrawer v-bind:drawer="showDrawer"/>
+    <SideDrawer v-bind:drawer="showDrawer" @update-drawer-state="updateDrawerState"/>
 
     <v-app-bar app color="red" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -10,6 +10,11 @@
 
     <v-main>
       <v-container class="fill-height" fluid>
+        <v-row align="center" justify="center">
+          <span class="display-1">
+            Start cleaning your Youtube subscriptions now
+          </span>
+        </v-row>
         <v-row align="center" justify="center">
           <v-col class="text-center">
             <v-btn width="185" height="40" @click="signIn">
@@ -38,12 +43,15 @@ export default {
     SideDrawer,
   },
   data: () => ({
-    drawer: true
+    drawer: null
   }),
-
   methods: {
     signIn: function() {
       //sign in stuff here
+    },
+
+    updateDrawerState: function(newValue) {
+      this.drawer = newValue;
     }
   },
   computed: {

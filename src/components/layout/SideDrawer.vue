@@ -1,5 +1,5 @@
 <template>
-<v-navigation-drawer v-model="drawer" app>
+<v-navigation-drawer v-model="showDrawer" app>
 
     <About v-bind:dialog="aboutDialog" @update-dialog="updateAboutDialog"/>
 
@@ -61,9 +61,7 @@ export default {
     components: {
         About,
     },
-    props: {
-        drawer: null
-    },
+    props: ['drawer'],
     data: () => ({
         aboutDialog: false,
     }),
@@ -73,8 +71,15 @@ export default {
         }
     },
     computed: {
+        showDrawer: {
+            get: function() {
+                return this.drawer;
+            },
+            set: function(newValue) {
+                this.$emit('update-drawer-state', newValue);
+            }
+        }, 
         showAboutDialog: function() {
-            console.log("showing about dialog");
             return this.aboutDialog;
         },
     }
