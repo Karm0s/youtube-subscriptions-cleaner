@@ -1,0 +1,86 @@
+<template>
+<v-navigation-drawer v-model="drawer" app>
+
+    <About v-bind:dialog="aboutDialog" @update-dialog="updateAboutDialog"/>
+
+    <v-list dense>
+    <v-list-item link>
+        <v-list-item-action>
+        <v-icon>mdi-login</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+        <v-list-item-title>Sign In With Google</v-list-item-title>
+        </v-list-item-content>
+    </v-list-item>
+    
+    <v-list-item link @click="aboutDialog = !aboutDialog">
+        <v-list-item-action>
+        <v-icon>info</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+        <v-list-item-title>About</v-list-item-title>
+        </v-list-item-content>
+    </v-list-item>
+
+    <v-list-item link>
+        <v-list-item-action>
+        <v-icon>mdi-email</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+        <v-list-item-title>Contact</v-list-item-title>
+        </v-list-item-content>
+    </v-list-item>
+
+    <v-list-item link>
+        <v-list-item-action>
+        <v-icon>mdi-code-tags</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+        <v-list-item-title>Code</v-list-item-title>
+        </v-list-item-content>
+    </v-list-item>
+
+    <v-list-item link>
+        <v-list-item-action>
+        <v-icon>mdi-logout</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+        <v-list-item-title>Sign Out</v-list-item-title>
+        </v-list-item-content>
+    </v-list-item>
+    </v-list>
+</v-navigation-drawer>
+
+</template>
+
+<script>
+import About from './About';
+
+export default {
+    name: 'SideDrawer',
+    components: {
+        About,
+    },
+    props: {
+        drawer: null
+    },
+    data: () => ({
+        aboutDialog: false,
+    }),
+    methods: {
+        updateAboutDialog: function (newValue) {
+            this.aboutDialog = newValue;
+        }
+    },
+    computed: {
+        showAboutDialog: function() {
+            console.log("showing about dialog");
+            return this.aboutDialog;
+        },
+    }
+}
+</script>
+
+<style>
+
+</style>
