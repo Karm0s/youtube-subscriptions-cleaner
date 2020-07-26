@@ -36,12 +36,19 @@ export default {
     SideDrawer,
   },
   data: () => ({
-    drawer: null
+    drawer: null,
+    gapi: null
   }),
+  created: async function() {
+    this.gapi = await this.$gapi.getGapiClient();
+    console.log("GAPI init done.");
+
+  },
   methods: {
     signIn: function() {
       //sign in stuff here
-      console.log("sign in clicked");
+      console.log("Login in with google...");
+      this.$gapi.login();
     },
 
     updateDrawerState: function(newValue) {

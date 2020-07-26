@@ -12,6 +12,7 @@
     "material-design-icons-iconfont": "^5.0.1",
     "tailwindcss": "^1.5.2",
     "vue": "^2.6.11",
+    "vue-gapi": "^0.3.1",
     "vue-mobile-detection": "^1.0.0",
     "vuetify": "^2.2.11"
   },
