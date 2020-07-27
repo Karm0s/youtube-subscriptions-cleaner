@@ -70,7 +70,7 @@ export default {
       this.aboutDialog = newValue;
     },
     emitLoginEvent: function () {
-      this.$emit('drawer-signin-link-clicked');
+      this.$emit('google-signin-button-click');
     }
   },
   computed: {
