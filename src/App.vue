@@ -9,13 +9,16 @@
     </v-app-bar>
 
     <v-main>
-      <GoogleAuth v-show="!isAuthorized" @google-signin-button-click="signIn"/>
+        <GoogleAuth v-if="!isAuthorized" @google-signin-button-click="signIn"/>
+        <CleaningArea v-if="isAuthorized"/>
     </v-main>
+
   </v-app>
 </template>
 
 <script>
 import SideDrawer from './components/layout/SideDrawer';
+import CleaningArea from './components/layout/CleaningArea';
 import GoogleAuth from './components/GoogleAuth';
 
 export default {
@@ -25,13 +28,14 @@ export default {
   },
   components: {
     SideDrawer,
-    GoogleAuth
+    GoogleAuth,
+    CleaningArea
   },
   data: () => ({
     drawer: null,
     gapi: null,
     googleAuth: null,
-    isAuthorized: false,
+    isAuthorized: true, //TO BE CHANGED TO FALSE 
   }),
   created: function () {
     this.$gapi.getGapiClient().then(gapi => {
