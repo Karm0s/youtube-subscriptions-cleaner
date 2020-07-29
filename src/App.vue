@@ -35,7 +35,7 @@ export default {
     drawer: null,
     gapi: null,
     googleAuth: null,
-    isAuthorized: true, //TO BE CHANGED TO FALSE 
+    isAuthorized: false, //TO BE CHANGED TO FALSE 
   }),
   created: function () {
     this.$gapi.getGapiClient().then(gapi => {
