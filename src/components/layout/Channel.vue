@@ -18,7 +18,7 @@
     </v-list-item-content>
 
     <v-list-item-action>
-      <v-checkbox></v-checkbox>
+      <v-checkbox v-model="channelInfo.checked"></v-checkbox>
     </v-list-item-action>
   </v-list-item>
 </template>
