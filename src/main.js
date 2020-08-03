@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import App from './App.vue';
 
+import store from './store';
+
 import VueGAPI from 'vue-gapi';
 
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
@@ -25,5 +27,6 @@ Vue.use(VueGAPI, apiConfig);
 
 new Vue({
   vuetify,
+  store,
   render: h => h(App)
 }).$mount('#app')
