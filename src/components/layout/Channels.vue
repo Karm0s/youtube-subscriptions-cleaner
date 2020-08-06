@@ -53,29 +53,42 @@ export default {
     };
   },
   computed: mapGetters([
+    // channels module
     "getChannels",
     "channelsAvailible",
     "getItemPerPage",
-    "getTotalChannelsNumber"
+    "getTotalChannelsNumber",
+
+    // filters module
+    "getChannelsPerPage",
   ]),
   created: function() {
     this.loadGapi(this); // loading the Google API
-    this.loadChannels().then(() => this.channelsToRender = this.getChannels.slice(0, this.size));
+    this.loadChannels().then(() => this.channelsToRender = this.getChannels.slice(0, this.getChannelsPerPage));
     // this.loadNextPage();
   },
+  watch: {
+    getChannelsPerPage: function () {
+      this.reloadCurrentPage();
+    }
+  },
   methods: {
-    ...mapActions(["loadGapi", "loadChannels"]),
+    ...mapActions(["loadGapi", "loadChannels", "updateChannelsOrder"]),
+    reloadCurrentPage: function () {
+      this.loadNextPage();
+      this.currentPage -= 1;
+    },
     loadNextPage: async function() {
-      if (this.getChannels.length <= this.index + this.size) {
+      if (this.getChannels.length <= this.index + this.getChannelsPerPage) {
         await this.loadChannels();
       }
-      this.index += this.size;
+      this.index += this.getChannelsPerPage;
 
       this.channelsToRender = this.getChannels.slice(
         this.index,
-        this.index + this.size
+        this.index + this.getChannelsPerPage
       );
-      // console.log(this.getChannels.slice(this.index, this.index + this.size));
+      // console.log(this.getChannels.slice(this.index, this.index + this.getChannelsPerPage));
 
       this.currentPage += 1;
     },
@@ -83,13 +96,13 @@ export default {
       if (this.currentPage - 1 === 0) {
         return;
       }
-      this.index -= this.size;
+      this.index -= this.getChannelsPerPage;
       if (this.index < 0) {
         this.index = 0;
       }
       this.channelsToRender = this.getChannels.slice(
         this.index,
-        this.index + this.size - 1
+        this.index + this.getChannelsPerPage - 1
       );
       this.currentPage -= 1;
     }

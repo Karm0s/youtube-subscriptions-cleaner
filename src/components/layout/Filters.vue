@@ -5,9 +5,9 @@
         <v-select :items="itemsPerPageOptions" v-model="itemsPerPage" @change="changeChannelsPerPage" label="Channels Per Page">
         </v-select>
       </v-col>
-      <v-col cols="2">
+      <!-- <v-col cols="2">
         <v-select :items="orderOptions" v-model="channelsOrder" @change="changeChannelsOrder" label="Order"> </v-select>
-      </v-col>
+      </v-col> -->
     </v-row>
   </v-container>
 </template>

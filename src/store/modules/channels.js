@@ -4,6 +4,7 @@ const state = {
   nextPageToken: "",
   prevPageToken: "",
   totalChannelsNumber: 0,
+
   index: 0,
   size: 50
 };
@@ -31,6 +32,7 @@ const actions = {
       mine: true,
       maxResults: state.size,
       pageToken: state.nextPageToken,
+      order: state.channelsOrder
     };
 
     let request = gapi.client.youtube.subscriptions.list(requestParams);
@@ -80,8 +82,7 @@ const actions = {
   },
   updateIndex({ commit, state }){
     commit("setIndex", state.index + state.size)
-  }
-  
+  },
 };
 
 const mutations = {
