@@ -2,7 +2,7 @@
   <div>
     <Pagination
       :currentPage="currentPage"
-      :numberOfPages="getTotalChannelsNumber"
+      :numberOfPages="numberOfPages"
       @previous-page="loadPreviousPage"
       @next-page="loadNextPage"
     />
@@ -24,7 +24,7 @@
 
     <Pagination
       :currentPage="currentPage"
-      :numberOfPages="getTotalChannelsNumber"
+      :numberOfPages="numberOfPages"
       @previous-page="loadPreviousPage"
       @next-page="loadNextPage"
     />
@@ -52,16 +52,21 @@ export default {
       channelsToRender: []
     };
   },
-  computed: mapGetters([
-    // channels module
-    "getChannels",
-    "channelsAvailible",
-    "getItemPerPage",
-    "getTotalChannelsNumber",
+  computed: {
+    ...mapGetters([
+      // channels module
+      "getChannels",
+      "channelsAvailible",
+      "getItemPerPage",
+      "getTotalChannelsNumber",
 
-    // filters module
-    "getChannelsPerPage",
-  ]),
+      // filters module
+      "getChannelsPerPage",
+    ]),
+    numberOfPages: function () {
+      return parseInt(this.getTotalChannelsNumber / this.size);
+    }
+  },
   created: function() {
     this.loadGapi(this); // loading the Google API
     this.loadChannels().then(() => this.channelsToRender = this.getChannels.slice(0, this.getChannelsPerPage));
