@@ -22,14 +22,14 @@ export default {
       itemsPerPage: 5,
       channelsOrder: "unread",
 
-      itemsPerPageOptions: [],
+      itemsPerPageOptions: [5, 10, 20, 40],
       orderOptions: ["alphabetical", "relevance", "unread"]
     };
   },
   created: function() {
-    for (let i = 5; i <= 50; i += 5) {
-      this.itemsPerPageOptions.push(i);
-    }
+    // for (let i = 5; i <= 50; i += 5) {
+    //   this.itemsPerPageOptions.push(i);
+    // }
 
     this.updateChannelsPerPage(this.itemsPerPage);
     this.updateChannelsOrder(this.channelsOrder);

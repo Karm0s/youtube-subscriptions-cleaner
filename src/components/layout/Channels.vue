@@ -73,15 +73,24 @@ export default {
     // this.loadNextPage();
   },
   watch: {
-    getChannelsPerPage: function () {
+    getChannelsPerPage: function (newValue, oldValue) {
+      this.currentPage = parseInt(this.currentPage * oldValue / newValue) || 1;
+      
+      this.index = (oldValue - newValue >= 0)? this.index + (oldValue - newValue) : 0;
+      
       this.reloadCurrentPage();
     }
   },
   methods: {
     ...mapActions(["loadGapi", "loadChannels", "updateChannelsOrder"]),
-    reloadCurrentPage: function () {
-      this.loadNextPage();
-      this.currentPage -= 1;
+    reloadCurrentPage: async function () {
+      if (this.getChannels.length <= this.index + this.getChannelsPerPage) {
+        await this.loadChannels();
+      }
+      this.channelsToRender = this.getChannels.slice(
+        this.index,
+        this.index + this.getChannelsPerPage
+      );
     },
     loadNextPage: async function() {
       if (this.getChannels.length <= this.index + this.getChannelsPerPage) {
@@ -107,7 +116,7 @@ export default {
       }
       this.channelsToRender = this.getChannels.slice(
         this.index,
-        this.index + this.getChannelsPerPage - 1
+        this.index + this.getChannelsPerPage
       );
       this.currentPage -= 1;
     }
