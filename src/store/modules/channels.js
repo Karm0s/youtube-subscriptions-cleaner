@@ -1,5 +1,6 @@
 const state = {
   channels: [],
+  channelsToDelete: [],
   itemsPerPage: String,
   nextPageToken: "",
   prevPageToken: "",
@@ -14,6 +15,7 @@ const getters = {
   //   state.channels.slice(state.index, state.index + state.size),
   getChannels: state => state.channels,
 
+  getChannelsToDelete: state => state.channelsToDelete,
 
   channelsAvailible: state => state.index + state.size >= state.channels.length,
 
@@ -38,11 +40,7 @@ const actions = {
     let request = gapi.client.youtube.subscriptions.list(requestParams);
     return request.then(res => {
       let data = res.result;
-      // this.nextPageToken = response.nextPageToken;
-      // this.requestNumberOfItems = response.pageInfo.totalResults;
-      // console.log(response);
       commit("setNextPageToken", data.nextPageToken);
-      // commit("setPrevPageToken", response.prevPageToken);
       commit("setTotalChannelsNumber", data.pageInfo.totalResults);
 
       // Populating channelsList
@@ -58,31 +56,30 @@ const actions = {
       }
       commit("pushNewChannels", channelsList);
     });
-    // response.execute(response => {
-    //   // this.nextPageToken = response.nextPageToken;
-    //   // this.requestNumberOfItems = response.pageInfo.totalResults;
-    //   // console.log(response);
-    //   commit("setNextPageToken", response.nextPageToken);
-    //   // commit("setPrevPageToken", response.prevPageToken);
-    //   commit("setTotalChannelsNumber", response.pageInfo.totalResults);
+  },
+  updateIndex({ commit, state }) {
+    commit("setIndex", state.index + state.size);
+  },
+  extractSubscriptionsToDelete({ commit, state }) {
+    let channelsToDelete = state.channels.filter(channel => channel.checked);
+    commit("setChannelsToDelete", channelsToDelete);
+  },
+  deleteSubscriptions({ commit, state, rootState }) {
+    console.log("here");
+    let ids = state.channelsToDelete.map(channel => channel.id);
 
-    //   // Populating channelsList
-    //   let channelsList = [];
-    //   for (let i = 0; i < response.items.length; i++) {
-    //     let item = response.items[i];
-    //     channelsList.push({
-    //       id: item.id,
-    //       channelName: item.snippet.title,
-    //       thumbnail: item.snippet.thumbnails.default.url,
-    //       checked: false
-    //     });
-    //   }
-    //   commit("pushNewChannels", channelsList);
-    // });
-  },
-  updateIndex({ commit, state }){
-    commit("setIndex", state.index + state.size)
-  },
+    let gapi = rootState.gapi.gapi;
+
+    let batch = gapi.client.newBatch();
+
+    for (let id of ids) {
+      let request = gapi.client.youtube.subscriptions.delete({
+        id
+      });
+      batch.add(request);
+    }
+    batch.then(() => {});
+  }
 };
 
 const mutations = {
@@ -94,7 +91,9 @@ const mutations = {
   setIndex: (state, value) => (state.index = value),
   setSize: (state, value) => (state.size = value),
 
-  pushNewChannels: (state, newChannels) => state.channels.push(...newChannels)
+  pushNewChannels: (state, newChannels) => state.channels.push(...newChannels),
+
+  setChannelsToDelete: (state, channels) => (state.channelsToDelete = channels)
 };
 
 export default {
