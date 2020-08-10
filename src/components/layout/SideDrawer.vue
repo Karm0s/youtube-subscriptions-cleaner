@@ -4,7 +4,7 @@
   <About v-bind:dialog="aboutDialog" @update-dialog="updateAboutDialog"/>
 
   <v-list dense>
-    <v-list-item link @click="emitLoginEvent">
+    <v-list-item link @click="signIn">
       <v-list-item-action>
       <v-icon>mdi-login</v-icon>
       </v-list-item-action>
@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import About from './About';
 
 export default {
@@ -66,11 +67,16 @@ export default {
     aboutDialog: false,
   }),
   methods: {
+    ...mapActions([
+      'googleSignIn',
+      'updateCurrentComponent'
+    ]),
     updateAboutDialog: function (newValue) {
       this.aboutDialog = newValue;
     },
-    emitLoginEvent: function () {
-      this.$emit('google-signin-button-click');
+    signIn: async function () {
+      await this.googleSignIn();
+      this.updateCurrentComponent('CleaningArea');
     }
   },
   computed: {

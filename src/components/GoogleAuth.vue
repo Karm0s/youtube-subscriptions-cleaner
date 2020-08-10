@@ -8,7 +8,7 @@
     </div>
     <div>
       <!-- <GoogleSignInBtn label="Sign In" @click="$emit('google-signin-button-click')" /> -->
-      <GoogleSignInBtn label="Sign In" @click="googleSignIn" />
+      <GoogleSignInBtn label="Sign In" @click="signIn"/>
     </div>
   </div>
 </template>
@@ -22,7 +22,16 @@ export default {
   components: {
     GoogleSignInBtn,
   },
-  methods: mapActions(['googleSignIn']),
+  methods: {
+    ...mapActions([
+      'googleSignIn',
+      'updateCurrentComponent'
+    ]),
+    signIn: async function () {
+      await this.googleSignIn();
+      this.updateCurrentComponent('CleaningArea');
+    }
+  },
 
 };
 </script>

@@ -3,7 +3,6 @@
     <SideDrawer
       v-bind:drawer="showDrawer"
       @update-drawer-state="updateDrawerState"
-      @google-signin-button-click="signIn"
     />
 
     <v-app-bar app color="red" dark>
@@ -21,8 +20,9 @@
         </v-row>
       </v-container>
       <v-container v-else>
-        <GoogleAuth v-if="!isAuthorized" />
-        <CleaningArea v-if="isAuthorized" />
+        <!-- <GoogleAuth v-if="!isAuthorized" />
+        <CleaningArea v-if="isAuthorized" /> -->
+        <component :is="getCurrentComponent"></component>
       </v-container>
     </v-main>
   </v-app>
@@ -46,7 +46,7 @@ export default {
     CleaningArea
   },
   data: () => ({
-    drawer: null
+    drawer: null,
   }),
   created: function() {
     this.loadGapi(this);
@@ -58,7 +58,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["isInitialized", "isAuthorized"]),
+    ...mapGetters([
+      "isInitialized", 
+      "isAuthorized",
+
+      "getCurrentComponent"
+    ]),
     showDrawer: function() {
       return this.drawer;
     }
