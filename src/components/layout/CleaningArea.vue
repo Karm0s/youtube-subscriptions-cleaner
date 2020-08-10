@@ -32,7 +32,8 @@ export default {
   methods: {
     ...mapActions([
       'extractSubscriptionsToDelete',
-      'deleteSubscriptions'
+      'deleteSubscriptions',
+      'removeDeletedChannels'
     ]),
     doneClick: function () {
       this.extractSubscriptionsToDelete();
@@ -43,10 +44,8 @@ export default {
       if (!confirmed){
         return;
       }
-      
-      console.log("Delete channels");
       this.deleteSubscriptions();
-      return;
+      this.removeDeletedChannels();
     }
   }
 }

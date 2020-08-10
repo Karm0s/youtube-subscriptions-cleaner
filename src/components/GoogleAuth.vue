@@ -7,19 +7,22 @@
       </p>
     </div>
     <div>
-      <GoogleSignInBtn label="Sign In" @click="$emit('google-signin-button-click')" />
+      <!-- <GoogleSignInBtn label="Sign In" @click="$emit('google-signin-button-click')" /> -->
+      <GoogleSignInBtn label="Sign In" @click="googleSignIn" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import GoogleSignInBtn from './GoogleSigninButton';
 
 export default {
   name: 'GoogleAuth',
   components: {
     GoogleSignInBtn,
-  }
+  },
+  methods: mapActions(['googleSignIn']),
 
 };
 </script>
