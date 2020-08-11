@@ -4,15 +4,6 @@
   <About v-bind:dialog="aboutDialog" @update-dialog="updateAboutDialog"/>
 
   <v-list dense>
-    <v-list-item link @click="signIn">
-      <v-list-item-action>
-      <v-icon>mdi-login</v-icon>
-      </v-list-item-action>
-      <v-list-item-content>
-      <v-list-item-title>Sign In With Google</v-list-item-title>
-      </v-list-item-content>
-    </v-list-item>
-    
     <v-list-item link @click="aboutDialog = !aboutDialog">
       <v-list-item-action>
       <v-icon>info</v-icon>
@@ -22,39 +13,39 @@
       </v-list-item-content>
     </v-list-item>
 
-    <v-list-item link>
+    <v-list-item link href="mailto:bouchenna.yanis@protonmail.com">
       <v-list-item-action>
       <v-icon>mdi-email</v-icon>
       </v-list-item-action>
       <v-list-item-content>
-      <v-list-item-title>Contact</v-list-item-title>
+      <v-list-item-title>Contact Me</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
-    <v-list-item link>
+    <v-list-item link href="https://github.com/Karm0s/youtube-subscriptions-cleaner" target="_blank">
       <v-list-item-action>
       <v-icon>mdi-code-tags</v-icon>
       </v-list-item-action>
       <v-list-item-content>
-      <v-list-item-title>Code</v-list-item-title>
+      <v-list-item-title>Code Repository</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
-    <v-list-item link>
+    <v-list-item link href="https://www.buymeacoffee.com/SQJcdoxCG" target="_blank">
       <v-list-item-action>
-      <v-icon>mdi-logout</v-icon>
+      <v-icon>mdi-currency-usd</v-icon>
       </v-list-item-action>
       <v-list-item-content>
-      <v-list-item-title>Sign Out</v-list-item-title>
+      <v-list-item-title>Make A Donation</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
+
   </v-list>
 </v-navigation-drawer>
 
 </template>
 
 <script>
-import { mapActions } from 'vuex';
 import About from './About';
 
 export default {
@@ -67,16 +58,8 @@ export default {
     aboutDialog: false,
   }),
   methods: {
-    ...mapActions([
-      'googleSignIn',
-      'updateCurrentComponent'
-    ]),
     updateAboutDialog: function (newValue) {
       this.aboutDialog = newValue;
-    },
-    signIn: async function () {
-      await this.googleSignIn();
-      this.updateCurrentComponent('CleaningArea');
     }
   },
   computed: {
