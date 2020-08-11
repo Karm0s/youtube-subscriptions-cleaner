@@ -8,15 +8,35 @@
       </template> -->
       <v-card>
         <v-card-title>
-          <span class="headline">What is Subs Cleaner?</span>
+          <span class="text-h4">About</span>
         </v-card-title>
         <v-card-text>
-            Subs Cleaner is web app made to help you clean your Youtube subscription.
-            Because Youtube's way is really not optimized.
+          <v-row>
+            <v-col>
+              <p class="text-h6 black--text">What is Subs Cleaner?</p>
+              <p>
+                Subs Cleaner is web app made to unsubscribe from channels with one button click.
+              </p>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col>
+              <p class="text-h6 black--text">Why I made this web app</p>
+              <p>
+                I made this app to make my portfolio and Github profiles look more attractive, and also
+                improve my Vue.js skills.
+              </p>
+            </v-col>
+          </v-row>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="red darken-1" text @click="$emit('update-dialog', false)">Close</v-btn
+          <v-btn
+            color="red darken-1"
+            text
+            @click="$emit('update-dialog', false)"
+            >Close</v-btn
           >
         </v-card-actions>
       </v-card>
@@ -26,23 +46,21 @@
 
 <script>
 export default {
-    data () {
-      return {
+  data() {
+    return {};
+  },
+  props: ["dialog"],
+  computed: {
+    showAboutDialog: {
+      get: function() {
+        return this.dialog;
+      },
+      set: function(newValue) {
+        this.$emit("update-dialog", newValue);
       }
-    },
-    props: ['dialog'],
-    computed: {
-        showAboutDialog: {
-            get: function() {
-                return this.dialog;
-            },
-            set: function(newValue) {
-                this.$emit('update-dialog', newValue);
-            }
-        } 
     }
-}
-
+  }
+};
 </script>
 
 <style scoped></style>
