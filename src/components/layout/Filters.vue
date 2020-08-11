@@ -1,13 +1,10 @@
 <template>
-  <v-container class="tw-h-35" elevation="2">
+  <v-container elevation="2">
     <v-row align="center" justify="center">
       <v-col sm="3">
         <v-select :items="itemsPerPageOptions" v-model="itemsPerPage" @change="changeChannelsPerPage" label="Channels Per Page">
         </v-select>
       </v-col>
-      <!-- <v-col cols="2">
-        <v-select :items="orderOptions" v-model="channelsOrder" @change="changeChannelsOrder" label="Order"> </v-select>
-      </v-col> -->
     </v-row>
   </v-container>
 </template>

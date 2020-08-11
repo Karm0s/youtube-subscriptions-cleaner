@@ -6,15 +6,7 @@
       @previous-page="loadPreviousPage"
       @next-page="loadNextPage"
     />
-
-    <!-- <v-list elevation="10" class="tw-mb-5">
-      <div v-for="channelInfo in channelsList" :key="channelInfo.id">
-        <Channel v-bind:channelInfo="channelInfo" />
-
-        <v-divider></v-divider>
-      </div>
-    </v-list> -->
-    <v-list elevation="10" class="tw-mb-5">
+    <v-list elevation="10">
       <div v-for="channelInfo in channelsToRender" :key="channelInfo.id">
         <Channel v-bind:channelInfo="channelInfo" />
 
@@ -23,6 +15,7 @@
     </v-list>
 
     <Pagination
+      class="mb-5"
       :currentPage="currentPage"
       :numberOfPages="numberOfPages"
       @previous-page="loadPreviousPage"

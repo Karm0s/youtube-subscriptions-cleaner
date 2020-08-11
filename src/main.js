@@ -10,8 +10,6 @@ import vuetify from './plugins/vuetify';
 
 import VueMobileDetection from 'vue-mobile-detection';
 
-import './assets/css/tailwind.css';
-
 
 const apiConfig = {
   apiKey: 'AIzaSyD6db60yXZRLlBwiNvAh93Un0beskG6lpk',
