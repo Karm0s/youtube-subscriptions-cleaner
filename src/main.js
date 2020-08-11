@@ -20,7 +20,7 @@ const apiConfig = {
   scope: 'https://www.googleapis.com/auth/youtube',
 };
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 
 Vue.use(VueMobileDetection);
 Vue.use(VueGAPI, apiConfig);
