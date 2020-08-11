@@ -34,6 +34,7 @@ import { mapGetters, mapActions } from "vuex";
 import SideDrawer from "./components/layout/SideDrawer";
 import CleaningArea from "./components/layout/CleaningArea";
 import GoogleAuth from "./components/GoogleAuth";
+import InfosAndLinks from './components/layout/InfosAndLinks';
 
 export default {
   name: "App",
@@ -43,7 +44,8 @@ export default {
   components: {
     SideDrawer,
     GoogleAuth,
-    CleaningArea
+    CleaningArea,
+    InfosAndLinks
   },
   data: () => ({
     drawer: null,
@@ -55,6 +57,10 @@ export default {
     ...mapActions(["loadGapi"]),
     updateDrawerState: function(newValue) {
       this.drawer = newValue;
+    },
+    signIn: async function () {
+      await this.googleSignIn();
+      this.updateCurrentComponent('CleaningArea');
     }
   },
   computed: {
@@ -62,7 +68,10 @@ export default {
       "isInitialized", 
       "isAuthorized",
 
-      "getCurrentComponent"
+      "getCurrentComponent",
+
+      'googleSignIn',
+      'updateCurrentComponent',
     ]),
     showDrawer: function() {
       return this.drawer;

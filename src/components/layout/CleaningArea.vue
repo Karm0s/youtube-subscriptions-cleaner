@@ -33,7 +33,9 @@ export default {
     ...mapActions([
       'extractSubscriptionsToDelete',
       'deleteSubscriptions',
-      'removeDeletedChannels'
+      'removeDeletedChannels',
+
+      'updateCurrentComponent',
     ]),
     doneClick: function () {
       this.extractSubscriptionsToDelete();
@@ -46,6 +48,8 @@ export default {
       }
       this.deleteSubscriptions();
       this.removeDeletedChannels();
+      
+      this.updateCurrentComponent('InfosAndLinks');
     }
   }
 }
