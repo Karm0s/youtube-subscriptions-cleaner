@@ -1,8 +1,13 @@
 <template>
   <v-container>
     <DeleteConfirmation :dialog="showDeleteConfirmDialog" @dialog-confirm="handleDialogResponse"/>
-    <v-alert type="info" border="left" class="mb-0" colored-border elevation="2">
+    <v-alert type="info" border="left" class="mb-0" dismissible colored-border elevation="2">
       Please select all the channels you want to unsubscribe from and then hit the 'Done' button at the bottom right of the page
+    </v-alert>
+
+    <v-alert type="error" border="left" class="mt-1" dismissible colored-border elevation="2">
+      Note that this app doesn't save any user data, so if you leave the app before clicking on 'Done' all your selections will
+      be lost
     </v-alert>
     <Filters />
     <Channels />
