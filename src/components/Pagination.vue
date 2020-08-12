@@ -11,7 +11,7 @@
 
       <v-col align-self="center" cols="2">
         <v-row justify="center">
-          <h1 align-center>{{ currentPage }} / {{ numberOfPages }}</h1>
+          <p align-center>{{ currentPage }} / {{ numberOfPages }}</p>
         </v-row>
       </v-col>
       <v-col>
