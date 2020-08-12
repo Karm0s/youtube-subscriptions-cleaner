@@ -13,7 +13,7 @@ import VueMobileDetection from 'vue-mobile-detection';
 
 const apiConfig = {
   apiKey: 'AIzaSyD6db60yXZRLlBwiNvAh93Un0beskG6lpk',
-  clientId: '512177587596-jfuckt2basgvqbui41hvd8fese2baa0c.apps.googleusercontent.com',
+  clientId: '512177587596-79ngm7v4tt6ti1kv1c7ao2emm76unn3e.apps.googleusercontent.com',
   discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
   scope: 'https://www.googleapis.com/auth/youtube',
 };
