@@ -36,7 +36,7 @@ export default {
   color: #000;
 }
 .g-signin span.icon {
-  background-image: url("https://developers.google.com/identity/images/g-logo.png");
+  background-image: url("../assets/g-logo.png");
   background-size: 26px 26px;
   background-repeat: no-repeat;
   background-position: center center;
